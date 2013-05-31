@@ -1,17 +1,24 @@
-require 'elbow_patch/railtie'
 require 'elbow_patch/version'
 
 module ElbowPatch
-  def self.apply(versions = {})
-    apply_patch = false
-    versions.each do |min_version, max_version|
-      apply_patch = apply_patch || rails_between(min_version, max_version)
+  class << self
+    def apply(name, versions = {})
+      apply_patch = false
+      versions.each do |min_version, max_version|
+        apply_patch = apply_patch || rails_between(min_version, max_version)
+      end
+      if apply_patch
+        Rails.logger.debug("Applying patch #{name}")
+        yield
+      end
     end
-    yield if apply_patch
+
+    private
+    def rails_between(min, max)
+      Gem::Version.new(Rails::VERSION::STRING) >= Gem::Version.new(min) && Gem::Version.new(Rails::VERSION::STRING) <= Gem::Version.new(max)
+    end
   end
 
-  private
-  def rails_between(min, max)
-    Gem::Version.new(Rails::VERSION::STRING) >= Gem::Version.new(min) && Gem::Version.new(Rails::VERSION::STRING) <= Gem::Version.new(max)
-  end
 end
+
+require 'elbow_patch/railtie'
