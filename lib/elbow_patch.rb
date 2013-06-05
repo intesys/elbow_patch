@@ -1,3 +1,4 @@
+require 'rubygems'
 require 'elbow_patch/version'
 
 module ElbowPatch
@@ -15,7 +16,7 @@ module ElbowPatch
 
     private
     def rails_between(min, max)
-      Gem::Version.create(Rails.version) >= Gem::Version.create(min.dup) && Gem::Version.new(Rails.version) <= Gem::Version.new(max.dup)
+      Gem::Version.new(Rails.version) >= Gem::Version.new(min.dup) && Gem::Version.new(Rails.version) <= Gem::Version.new(max.dup)
     end
   end
 
