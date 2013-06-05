@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = ElbowPatch::VERSION
   spec.authors       = ["Nicola Prando"]
   spec.email         = ["nicola.prando@intesys.it"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.description   = %q{Apply CVE security fix when you cannot update Rails}
+  spec.summary       = %q{Apply CVE security fix when you cannot update Rails}
   spec.homepage      = ""
   spec.license       = "MIT"
 

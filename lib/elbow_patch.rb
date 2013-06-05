@@ -15,7 +15,7 @@ module ElbowPatch
 
     private
     def rails_between(min, max)
-      Gem::Version.new(Rails::VERSION::STRING) >= Gem::Version.new(min) && Gem::Version.new(Rails::VERSION::STRING) <= Gem::Version.new(max)
+      Gem::Version.new(Rails.version) >= Gem::Version.new(min) && Gem::Version.new(Rails.version) <= Gem::Version.new(max)
     end
   end
 
